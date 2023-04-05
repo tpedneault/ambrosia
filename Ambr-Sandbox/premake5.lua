@@ -1,8 +1,7 @@
 project "Ambr-Sandbox"
-	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++20"
-	staticruntime "on"
+	staticruntime "off"
 
 	targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("../bin-int/" .. outputdir .. "/%{prj.name}")
@@ -18,8 +17,8 @@ project "Ambr-Sandbox"
 
 	filter "system:windows"
 		systemversion "latest"
-
-		defines { "GLCORE_PLATFORM_WINDOWS" }
+		defines { "GLCORE_PLATFORM_WINDOWS", "AMBR_SYSTEM_WINDOWS" }
+    links { "user32", "gdi32" }
 
 	filter "configurations:Debug"
 		defines "GLCORE_DEBUG"
@@ -30,3 +29,11 @@ project "Ambr-Sandbox"
 		defines "GLCORE_RELEASE"
 		runtime "Release"
 		optimize "on"
+
+  filter "platforms:Win32"
+	  kind "WindowedApp"
+    defines { "AMBR_WINDOW_WIN32" }
+
+  filter "platforms:GLFW"
+    kind "ConsoleApp"
+    defines { "AMBR_WINDOW_GLFW" }

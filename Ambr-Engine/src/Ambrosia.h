@@ -1,3 +1,4 @@
 #pragma once
 
-#include "Core/Application.h"
+#include "ambrosia/core/application.h"
+#include "ambrosia/core/entrypoint.h"

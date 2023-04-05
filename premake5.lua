@@ -3,6 +3,7 @@ workspace "Ambr-Sandbox"
 	startproject "Ambr-Sandbox"
 
 	configurations { "Debug", "Release" }
+  platforms { "Win32", "GLFW" }
 		
 	flags { "MultiProcessorCompile" }
 

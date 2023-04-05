@@ -2,7 +2,7 @@ project "Ambr-Engine"
 	kind "SharedLib"
 	language "C++"
 	cppdialect "C++20"
-	staticruntime "on"
+	staticruntime "off"
 
 	targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("../bin-int/" .. outputdir .. "/%{prj.name}")
@@ -10,12 +10,11 @@ project "Ambr-Engine"
 	files { "src/**.h", "src/**.cpp" }
 	includedirs { "src" }
 
-	links { "opengl32.lib" }
+	links { "opengl32.lib", "user32", "gdi32" }
 
 	filter "system:windows"
 		systemversion "latest"
-
-		defines { "GLCORE_PLATFORM_WINDOWS", "AMBR_ENGINE_EXPORT" }
+		defines { "GLCORE_PLATFORM_WINDOWS", "AMBR_ENGINE_EXPORT", "AMBR_WINDOW_WIN32" }
 
 	filter "configurations:Debug"
 		defines "GLCORE_DEBUG"
